@@ -16,7 +16,7 @@ def get_facemesh_coords(face_landmarks, image):
     return np.multiply(xyz, [w, h, w]).astype(int)
 
 # For static images:
-images_path = "static_Img/image/"
+images_path = "static/image/"
 images = glob.glob(images_path + "*.jpg")
 IMAGE_FILES = []
 for item in images:
@@ -36,7 +36,7 @@ with mp_face_mesh.FaceMesh(
       continue
     annotated_image = image.copy()
     # for coordinate
-    coordinate_path = "static_Img/results/coordinate/"
+    coordinate_path = "static/results/coordinate/"
     for face_landmarks in results.multi_face_landmarks:
         coords =   get_facemesh_coords(face_landmarks, image)
         save_path = coordinate_path + "image" + str(idx) + ".csv"
@@ -44,7 +44,7 @@ with mp_face_mesh.FaceMesh(
             writer = csv.writer(file)
             writer.writerows(coords)
     # for mesh 
-    mesh_path = "static_Img/results/mesh/"  
+    mesh_path = "static/results/mesh/"  
     for face_landmarks in results.multi_face_landmarks:        
       mp_drawing.draw_landmarks(
           image=annotated_image,
