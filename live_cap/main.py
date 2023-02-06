@@ -26,6 +26,7 @@ while cap.isOpened():
     ret, frame = cap.read()
     if not ret:
         break
+    cv2.imshow("Live Capture", frame)
     if i > frame_skip - 1:
         frame_count += 1
         save_path = store_path+'img'+str(frame_count) + '.jpg'
